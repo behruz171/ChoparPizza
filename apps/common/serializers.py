@@ -56,4 +56,10 @@ class AddProductKorzinkaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Korzinka
         fields = ['product', 'user']
+
+
+class UpdateProductKorzinkaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Korzinka
+        fields = ['user', 'product']
     

@@ -5,7 +5,7 @@ from rest_framework.views import Response, APIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from django.db.models import Sum
-
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 class ProductInfoView(ListAPIView):
     queryset = models.ProductInfo.objects.all()
@@ -18,6 +18,7 @@ class ProductView(ListAPIView):
 class CreateProductInfoView(CreateAPIView):
     queryset = models.ProductInfo.objects.all()
     serializer_class = serializers.CreateProductInfoSerializer
+
 
 class CreateProductView(CreateAPIView):
     queryset = models.Product.objects.all()
@@ -45,4 +46,8 @@ class KorzinkaListView(ListAPIView):
 class AddProductKorzinkaView(CreateAPIView):
     queryset = models.Korzinka
     serializer_class = serializers.AddProductKorzinkaSerializer
+
+class UpdateProductKorzinkaView(RetrieveUpdateDestroyAPIView):
+    queryset = models.Korzinka
+    serializer_class = serializers.UpdateProductKorzinkaSerializer
 

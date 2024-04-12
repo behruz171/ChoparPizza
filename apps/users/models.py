@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 from django.core import validators
@@ -68,6 +69,14 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.id} - {self.phone_number}"
+
+    def tokens(self):
+        refresh = RefreshToken.for_user(self)
+
+        return {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }
 
 
 
